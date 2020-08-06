@@ -15,7 +15,8 @@ P_result(x, y) = min(α(distance_to_positive_point), Ω)
 ```
 
 ### Examples
-
+![Example 1](media/example_01.png)
+![Example 2](media/example_02.png)
 
 ### Usage
 Input is a list of positive points
