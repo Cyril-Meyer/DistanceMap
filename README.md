@@ -15,8 +15,8 @@ P_result(x, y) = min(α(Δ), Ω)
 ```
 
 ### Examples
-![Example 1](media/example_01.png)
-![Example 2](media/example_02.png)
+![Example 1](https://raw.githubusercontent.com/Cyril-Meyer/DistanceMap/master/media/example_01.png)
+![Example 2](https://raw.githubusercontent.com/Cyril-Meyer/DistanceMap/master/media/example_02.png)
 
 ### Usage
 Input is a list of positive points
