@@ -11,7 +11,7 @@ over a list of positive points positions and not a binary matrix.
 α = a user defined function (ℝ+ → ℝ+) (default : x ↦ x)
 Ω = the maximum value
 
-P_result(x, y) = min(α(distance_to_positive_point), Ω)
+P_result(x, y) = min(α(Δ), Ω)
 ```
 
 ### Examples
