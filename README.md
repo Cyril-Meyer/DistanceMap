@@ -48,6 +48,15 @@ Parameters
   * linear (x ↦ A*x + B)
     * use set_a(a) and def set_b(b) to change A and B values
 
+### Benchmark
+The following tests has been made on a laptop with an Intel Core i7-7700HQ and 24Go of RAM.
+
+| Test | Time distance_map | Time distance_map_from_binary_matrix |
+|---------------------------------------------------|------|------|
+| 2D 1024 x 1024 image with 10 positive points      |  8ms | 11ms |
+| 2D 1024 x 1024 image with  5 positive points      |  5ms |  9ms |
+| 3D 128 x 128 x 128 image with 10 positive points  | 61ms |148ms |
+
 ### Acknowledgement
 This library is inspired for use as in the following paper.
 ```
