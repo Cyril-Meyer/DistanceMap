@@ -4,12 +4,10 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
-from distancemap import distance_map, distance_map_from_binary_matrix
-import functions
+import distancemap as dm
 
-BENCHMARK = False
+BENCHMARK = True
 EXAMPLE = True
-
 
 def benchmark():
     # 1024 x 1024 with 10 points
@@ -27,18 +25,18 @@ def benchmark():
 
     # Create CPU load
     for i in range(50):
-        distance_map_from_binary_matrix(input)
+        dm.distance_map_from_binary_matrix(input)
 
     time1 = time.time()
     for i in range(10):
-        distance_map_from_binary_matrix(input)
+        dm.distance_map_from_binary_matrix(input)
     time2 = time.time()
     time_dmfbm_2d_1024_1024_10 = (time2 - time1)*1000
 
     points = np.argwhere(input)
     time1 = time.time()
     for i in range(10):
-        distance_map(input.shape, points)
+        dm.distance_map(input.shape, points)
     time2 = time.time()
     time_dm_2d_1024_1024_10 = (time2 - time1)*1000
 
@@ -52,14 +50,14 @@ def benchmark():
 
     time1 = time.time()
     for i in range(10):
-        distance_map_from_binary_matrix(input)
+        dm.distance_map_from_binary_matrix(input)
     time2 = time.time()
     time_dmfbm_2d_1024_1024_5 = (time2 - time1)*1000
 
     points = np.argwhere(input)
     time1 = time.time()
     for i in range(10):
-        distance_map(input.shape, points)
+        dm.distance_map(input.shape, points)
     time2 = time.time()
     time_dm_2d_1024_1024_5 = (time2 - time1)*1000
 
@@ -81,12 +79,12 @@ def benchmark():
         points = np.argwhere(input)
 
         time1 = time.time()
-        distance_map_from_binary_matrix(input)
+        dm.distance_map_from_binary_matrix(input)
         time2 = time.time()
         time_dmfbm_3d_256_256_256_25 += (time2 - time1)*1000
 
         time1 = time.time()
-        distance_map(input.shape, points)
+        dm.distance_map(input.shape, points)
         time2 = time.time()
         time_dm_3d_256_256_256_25 += (time2 - time1)*1000
 
@@ -108,29 +106,31 @@ def example():
     input[1000, 20] = True
 
     input_visible = input
+    """
     points = np.argwhere(input_visible)
     for p in points:
         input_visible[p[0]-15:p[0]+15, p[1]-15:p[1]+15] = True
+    """
 
     plt.figure(1)
     plt.subplot(231)
     plt.imshow(input_visible, cmap="Greys")
     plt.title("original (each square represent a single pixel)")
     plt.subplot(232)
-    plt.imshow(distance_map_from_binary_matrix(input), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input), cmap="Greys", vmin=0, vmax=255)
     plt.title("default")
     plt.subplot(233)
-    plt.imshow(distance_map_from_binary_matrix(input, distance="manhattan"), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, distance="manhattan"), cmap="Greys", vmin=0, vmax=255)
     plt.title("manhattan")
     plt.subplot(234)
-    plt.imshow(distance_map_from_binary_matrix(input, alpha="square", omega=255.0), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, alpha="square", omega=255.0), cmap="Greys", vmin=0, vmax=255)
     plt.title("alpha square")
     plt.subplot(235)
-    functions.set_a(0.5)
-    plt.imshow(distance_map_from_binary_matrix(input, alpha="linear"), cmap="Greys", vmin=0, vmax=255)
+    dm.set_a(0.5)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, alpha="linear"), cmap="Greys", vmin=0, vmax=255)
     plt.title("linear 0.5*x")
     plt.subplot(236)
-    plt.imshow(distance_map_from_binary_matrix(input, distance="manhattan", alpha="linear", omega=100.0), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, distance="manhattan", alpha="linear", omega=100.0), cmap="Greys", vmin=0, vmax=255)
     plt.title("manhattan linear 0.5*x omega=100")
     plt.show()
 
@@ -142,29 +142,31 @@ def example():
         input[x, y] = True
 
     input_visible = input
+    """
     points = np.argwhere(input_visible)
     for p in points:
         input_visible[p[0]-15:p[0]+15, p[1]-15:p[1]+15] = True
+    """
 
     plt.figure(1)
     plt.subplot(231)
     plt.imshow(input_visible, cmap="Greys")
     plt.title("original (each square represent a single pixel)")
     plt.subplot(232)
-    plt.imshow(distance_map_from_binary_matrix(input), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input), cmap="Greys", vmin=0, vmax=255)
     plt.title("default")
     plt.subplot(233)
-    plt.imshow(distance_map_from_binary_matrix(input, distance="manhattan"), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, distance="manhattan"), cmap="Greys", vmin=0, vmax=255)
     plt.title("manhattan")
     plt.subplot(234)
-    plt.imshow(distance_map_from_binary_matrix(input, alpha="square", omega=255.0), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, alpha="square", omega=255.0), cmap="Greys", vmin=0, vmax=255)
     plt.title("alpha square")
     plt.subplot(235)
-    functions.set_a(0.5)
-    plt.imshow(distance_map_from_binary_matrix(input, alpha="linear"), cmap="Greys", vmin=0, vmax=255)
+    dm.set_a(0.5)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, alpha="linear"), cmap="Greys", vmin=0, vmax=255)
     plt.title("linear 0.5*x")
     plt.subplot(236)
-    plt.imshow(distance_map_from_binary_matrix(input, distance="manhattan", alpha="linear", omega=100.0), cmap="Greys", vmin=0, vmax=255)
+    plt.imshow(dm.distance_map_from_binary_matrix(input, distance="manhattan", alpha="linear", omega=100.0), cmap="Greys", vmin=0, vmax=255)
     plt.title("manhattan linear 0.5*x omega=100")
     plt.show()
 
