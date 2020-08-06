@@ -2,8 +2,8 @@ import numpy as np
 
 from numba import jit
 
-from distances import manhattan_distance, euclidean_distance
-from functions import identity, square, linear
+from distancemap.distances import manhattan_distance, euclidean_distance
+from distancemap.functions import identity, square, linear
 
 
 @jit(nopython=True)
