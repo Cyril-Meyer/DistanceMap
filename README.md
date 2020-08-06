@@ -1,6 +1,9 @@
 # DistanceMap
 Python Distance Map library
 
+* [GitHub repository](https://github.com/Cyril-Meyer/DistanceMap)
+* [PyPI repository](https://pypi.org/project/distance-map/)
+
 For a N-dimension (2 ≤ N ≤ 3) binary matrix, return the corresponding distance map.
 For each pixel, the value is equal to the minimum distance to a "positive" pixel.
 Due to the way I plan to use this library, the implementation is in reality articulate
@@ -14,11 +17,26 @@ over a list of positive points positions and not a binary matrix.
 P_result(x, y) = min(α(Δ), Ω)
 ```
 
+### Install
+```
+pip install distance-map
+```
+
+### Usage
+```
+import distancemap as dm
+
+dm.distance_map(input.shape, points)
+dm.distance_map_from_binary_matrix(input)
+```
+Examples of usage : [test.py](test.py).
+
 ### Examples
 ![Example 1](https://raw.githubusercontent.com/Cyril-Meyer/DistanceMap/master/media/example_01.png)
 ![Example 2](https://raw.githubusercontent.com/Cyril-Meyer/DistanceMap/master/media/example_02.png)
 
-### Usage
+
+#### Functions
 Input is a list of positive points
 
 ```
@@ -36,7 +54,6 @@ Input is a list of positive points and you want to use custom arguments
 ```
 distance_map(input.shape, points, distance="manhattan", beta=15.0, alpha="square")
 ```
-
 
 Parameters
 * Distance
